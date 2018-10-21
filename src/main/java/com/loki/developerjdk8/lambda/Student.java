@@ -17,6 +17,15 @@ public class Student {
     public Student() {
     }
 
+    public Student(Integer age) {
+        this.age = age;
+    }
+
+    public Student(Integer age, Integer score) {
+        this.age = age;
+        this.score = score;
+    }
+
     public Student(String name, Integer age, String sex, Integer score) {
         this.name = name;
         this.age = age;
