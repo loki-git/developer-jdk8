@@ -15,6 +15,7 @@ public class Student {
     private Integer age;
     private String sex;
     private Integer score;
+    private Status status;
 
     public Student() {
     }
@@ -33,6 +34,14 @@ public class Student {
         this.age = age;
         this.sex = sex;
         this.score = score;
+    }
+
+    public Student(String name, Integer age, String sex, Integer score, Status status) {
+        this.name = name;
+        this.age = age;
+        this.sex = sex;
+        this.score = score;
+        this.status = status;
     }
 
     public String getName() {
@@ -67,6 +76,14 @@ public class Student {
         this.score = score;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -74,6 +91,7 @@ public class Student {
                 ", age=" + age +
                 ", sex='" + sex + '\'' +
                 ", score=" + score +
+                ", status=" + status +
                 '}';
     }
 
@@ -91,5 +109,11 @@ public class Student {
     @Override
     public int hashCode() {
         return Objects.hash(name, age, sex, score);
+    }
+
+    public enum Status{
+        FREE,
+        BUSY,
+        VOCATION;
     }
 }
