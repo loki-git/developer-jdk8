@@ -26,45 +26,42 @@ public class OptionalTest {
      * flatMap(Function mapper):与 map 类似，要求返回值必须是Optional
      */
     @Test
-    public void test4() {
-        Optional<Student> op = Optional.of(new Student("徐元", 19, "男", 550));
+    public void test4 () {
+        Optional<Student> op = Optional.ofNullable(new Student("唐三", 18, "男", 650, Student.Status.BUSY));
 
-        Optional<String> op2 = op.map(Student::getName);
+        Optional<String> op1 = op.map((s) -> s.getName());
+        System.out.println(op1.get());
+
+        Optional<String> op2 = op.flatMap((s) -> Optional.of(s.getName()));
         System.out.println(op2.get());
-
-        Optional<String> op3 = op.flatMap((e) -> Optional.of(e.getName()));
-        System.out.println(op3.get());
     }
 
     @Test
-    public void test3() {
-        Optional<Student> op = Optional.ofNullable(new Student());
+    public void test3 () {
+        Optional<Student> op = Optional.ofNullable(null);
 
+        // 判断op中是否有值
         if (op.isPresent()) {
             System.out.println(op.get());
         }
 
-        Student s = op.orElse(new Student(17));
+        Student s = op.orElse(new Student("唐三", 18, "男", 650, Student.Status.BUSY));
         System.out.println(s);
 
-        Student s2 = op.orElseGet(() -> new Student());
-        System.out.println(s2);
+        Student s1 = op.orElseGet(() -> new Student());
+        System.out.println(s1);
     }
 
     @Test
     public void test2() {
-		/*Optional<Employee> op = Optional.ofNullable(null);
-		System.out.println(op.get());*/
-
-//		Optional<Employee> op = Optional.empty();
-//		System.out.println(op.get());
+        Optional<Student> op = Optional.empty();
+        System.out.println(op.get());
     }
 
     @Test
     public void test1() {
         Optional<Student> op = Optional.of(new Student());
-        Student s = op.get();
-        System.out.println(s);
+        System.out.println(op.get());
     }
 
     @Test
